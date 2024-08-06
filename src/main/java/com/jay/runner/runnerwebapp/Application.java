@@ -1,6 +1,5 @@
 package com.jay.runner.runnerwebapp;
 
-import java.lang.reflect.AccessFlag.Location;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -12,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.jay.runner.runnerwebapp.run.Run;
+import com.jay.runner.runnerwebapp.run.Location;
 
 @SpringBootApplication
 public class Application {
@@ -23,12 +23,13 @@ public class Application {
 	}
 
 	@Bean
-	CommandLineRunner runner(){
-		
-		return args ->{
-			Run run = new Run(1, "first run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 8,Location.OUTDOOR);
-			log.info(run + "run");
-		}
+	CommandLineRunner runner() {
+
+		return args -> {
+			Run run = new Run(1, "first run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 8,
+					Location.OUTDOOR);
+			log.info("Run: " + run);
+		};
 	}
 
 }
