@@ -15,10 +15,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Runjsondataloader implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(Runjsondataloader.class);
-    private final Runrepository runRepository;
+    private final JdbcClientRunrepository runRepository;
     private final ObjectMapper objectMapper;
 
-    public Runjsondataloader(Runrepository runRepository, ObjectMapper objectMapper) {
+    public Runjsondataloader(JdbcClientRunrepository runRepository, ObjectMapper objectMapper) {
         this.runRepository = runRepository;
         this.objectMapper = objectMapper;
 
