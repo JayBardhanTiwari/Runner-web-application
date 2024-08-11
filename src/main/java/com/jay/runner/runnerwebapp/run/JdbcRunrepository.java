@@ -1,4 +1,3 @@
-
 package com.jay.runner.runnerwebapp.run;
 
 import java.util.List;
@@ -11,12 +10,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
 @Repository
-public class JdbcClientRunrepository {
+public class JdbcRunrepository implements Runrepository {
 
-    private static final Logger log = LoggerFactory.getLogger(JdbcClientRunrepository.class);
+    private static final Logger log = LoggerFactory.getLogger(JdbcRunrepository.class);
     private final JdbcClient jdbcClient;
 
-    public JdbcClientRunrepository(JdbcClient jdbcClient) {
+    public JdbcRunrepository(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
     }
 
@@ -42,7 +41,7 @@ public class JdbcClientRunrepository {
     }
 
     public void update(Run run, Integer id) {
-        var updated = jdbcClient.sql("update run set title = ? , started_on = ? , completed_on = ?, miles = ?, location = ?, where id = ?")
+        var updated = jdbcClient.sql("update run set title = ? , started_on = ? , completed_on = ?, miles = ?, location = ? where id = ?")
                 .params(List.of(run.title(), run.startedOn(), run.completedOn(), run.miles(), run.location().toString(), id))
                 .update();
 
@@ -70,7 +69,7 @@ public class JdbcClientRunrepository {
 
     public List<Run> findByLocation(String location) {
         return jdbcClient.sql("select * from run where location = :location")
-                .param("locarion", location)
+                .param("location", location)
                 .query(Run.class)
                 .list();
     }

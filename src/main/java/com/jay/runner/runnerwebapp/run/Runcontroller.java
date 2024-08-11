@@ -1,4 +1,3 @@
-
 package com.jay.runner.runnerwebapp.run;
 
 import java.util.List;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 
 //annotation
-
 @RestController
 @RequestMapping("/api/runs")
 public class Runcontroller {
@@ -49,25 +47,25 @@ public class Runcontroller {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     void create(@Valid @RequestBody Run run) {
-        runRepository.save(run);
+        runRepository.create(run);
     }
 
     // put
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
     void update(@RequestBody Run run, @PathVariable Integer id) {
-        runRepository.save(run);
+        runRepository.update(run, id);
     }
 
     // delete
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     void delete(@PathVariable Integer id) {
-        runRepository.delete(runRepository.findById(id).get());
+        runRepository.delete(id);
     }
 
     @GetMapping("/location/{location}")
-    List<Run> findByLocation(@PathVariable String location){
-        return runRepository.findAllByLocation(location);
+    List<Run> findByLocation(@PathVariable String location) {
+        return runRepository.findByLocation(location);
     }
 }

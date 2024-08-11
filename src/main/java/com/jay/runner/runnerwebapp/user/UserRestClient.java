@@ -13,7 +13,7 @@ public class UserRestClient {
 
     public UserRestClient(RestClient.Builder builder) {
         this.restClient = builder
-                .baseUrl("http://jsonplaceholder.typicode.com/")
+                .baseUrl("https://jsonplaceholder.typicode.com/")
                 .build();
     }
 
